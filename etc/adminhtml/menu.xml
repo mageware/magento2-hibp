@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="MageWare_Hibp::hibp" title="HIBP Integration" translate="title" module="MageWare_Hibp" sortOrder="30" parent="MageWare_Common::mageware" resource="MageWare_Hibp::config" />
+        <add id="MageWare_Hibp::config" title="Configuration" translate="title" module="MageWare_Hibp" sortOrder="10" parent="MageWare_Hibp::hibp" action="adminhtml/system_config/edit/section/mageware_hibp" resource="MageWare_Hibp::config" />
+    </menu>
+</config>
