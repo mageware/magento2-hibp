@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <mageware_hibp>
+            <storefront>
+                <check_pawned_password>0</check_pawned_password>
+                <required_unpawned_password>0</required_unpawned_password>
+            </storefront>
+            <admin>
+                <check_pawned_password>0</check_pawned_password>
+                <required_unpawned_password>0</required_unpawned_password>
+            </admin>
+        </mageware_hibp>
+    </default>
+</config>
