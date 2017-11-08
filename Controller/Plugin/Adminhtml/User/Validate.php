@@ -42,13 +42,13 @@ class Validate
         \Closure $proceed,
         \Magento\Framework\App\RequestInterface $request
     ) {
-        $requiredUnpawnedPassword = $this->scopeConfig->isSetFlag('mageware_hibp/admin/required_unpawned_password');
+        $requiredUnpwnedPassword = $this->scopeConfig->isSetFlag('mageware_hibp/admin/required_unpwned_password');
 
-        $currentRequiredUnpawnedPassword = $this->userManagement->requiredUnpawnedPassword($requiredUnpawnedPassword);
+        $currentRequiredUnpwnedPassword = $this->userManagement->requiredUnpwnedPassword($requiredUnpwnedPassword);
 
         $result = $proceed($request);
 
-        $this->userManagement->requiredUnpawnedPassword($currentRequiredUnpawnedPassword);
+        $this->userManagement->requiredUnpwnedPassword($currentRequiredUnpwnedPassword);
 
         return $result;
     }

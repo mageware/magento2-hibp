@@ -25,7 +25,7 @@ class CreatePost
     /**
      * @param \Magento\Framework\Message\ManagerInterface $messageManager
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-     * @param \MageWare\Hibp\Model\PawnedPasswordInterface $pawnedPasswordService
+     * @param \MageWare\Hibp\Model\PwnedPasswordInterface $pwnedPasswordService
      */
     public function __construct(
         \Magento\Framework\Message\ManagerInterface $messageManager,
@@ -50,20 +50,20 @@ class CreatePost
         \Closure $proceed,
         \Magento\Framework\App\RequestInterface $request
     ) {
-        $checkPawnedPassword = $this->scopeConfig->isSetFlag('mageware_hibp/storefront/check_pawned_password');
-        $requiredUnpawnedPassword = $this->scopeConfig->isSetFlag('mageware_hibp/storefront/required_unpawned_password');
+        $checkPwnedPassword = $this->scopeConfig->isSetFlag('mageware_hibp/storefront/check_pwned_password');
+        $requiredUnpwnedPassword = $this->scopeConfig->isSetFlag('mageware_hibp/storefront/required_unpwned_password');
 
-        $currentCheckPawnedPassword = $this->accountManagement->checkPawnedPassword($checkPawnedPassword);
-        $currentRequiredUnpawnedPassword = $this->accountManagement->requiredUnpawnedPassword($requiredUnpawnedPassword);
+        $currentCheckPwnedPassword = $this->accountManagement->checkPwnedPassword($checkPwnedPassword);
+        $currentRequiredUnpwnedPassword = $this->accountManagement->requiredUnpwnedPassword($requiredUnpwnedPassword);
 
         $result = $proceed($request);
 
-        $this->accountManagement->requiredUnpawnedPassword($currentRequiredUnpawnedPassword);
-        $this->accountManagement->checkPawnedPassword($currentCheckPawnedPassword);
+        $this->accountManagement->requiredUnpwnedPassword($currentRequiredUnpwnedPassword);
+        $this->accountManagement->checkPwnedPassword($currentCheckPwnedPassword);
 
-        if (!$requiredUnpawnedPassword && $this->accountManagement->isPawnedPassword()) {
+        if (!$requiredUnpwnedPassword && $this->accountManagement->isPwnedPassword()) {
             $this->messageManager->addWarning(
-                __('Your password is pawned. Learn more <a href="https://haveibeenpwned.com/Passwords">here</a>.')
+                __('Your password is pwned. Learn more <a href="https://haveibeenpwned.com/Passwords">here</a>.')
             );
         }
 

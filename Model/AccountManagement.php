@@ -31,29 +31,29 @@ use Magento\Framework\Stdlib\DateTime;
 use Magento\Framework\Stdlib\StringUtils as StringHelper;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Customer\Model\Customer\CredentialsValidator;
-use MageWare\Hibp\Model\PawnedPasswordInterface;
+use MageWare\Hibp\Model\PwnedPasswordInterface;
 
 class AccountManagement extends \Magento\Customer\Model\AccountManagement
 {
     /**
-     * @var PawnedPasswordInterface
+     * @var PwnedPasswordInterface
      */
-    private $pawnedPasswordService;
+    private $pwnedPasswordService;
 
     /**
      * @var bool
      */
-    private $pawnedPassword;
+    private $pwnedPassword;
 
     /**
      * @var bool
      */
-    private $checkPawnedPassword;
+    private $checkPwnedPassword;
 
     /**
      * @var bool
      */
-    private $requiredUnpawnedPassword;
+    private $requiredUnpwnedPassword;
 
     /**
      * @param CustomerFactory $customerFactory
@@ -80,7 +80,7 @@ class AccountManagement extends \Magento\Customer\Model\AccountManagement
      * @param ObjectFactory $objectFactory
      * @param ExtensibleDataObjectConverter $extensibleDataObjectConverter
      * @param CredentialsValidator|null $credentialsValidator
-     * @param PawnedPasswordInterface $pawnedPasswordService
+     * @param PwnedPasswordInterface $pwnedPasswordService
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct(
@@ -108,7 +108,7 @@ class AccountManagement extends \Magento\Customer\Model\AccountManagement
         ObjectFactory $objectFactory,
         ExtensibleDataObjectConverter $extensibleDataObjectConverter,
         CredentialsValidator $credentialsValidator = null,
-        PawnedPasswordInterface $pawnedPasswordService
+        PwnedPasswordInterface $pwnedPasswordService
     ) {
         parent::__construct(
             $customerFactory,
@@ -137,22 +137,22 @@ class AccountManagement extends \Magento\Customer\Model\AccountManagement
             $credentialsValidator
         );
 
-        $this->pawnedPasswordService = $pawnedPasswordService;
-        $this->pawnedPassword = false;
-        $this->checkPawnedPassword = false;
-        $this->requiredUnpawnedPassword = false;
+        $this->pwnedPasswordService = $pwnedPasswordService;
+        $this->pwnedPassword = false;
+        $this->checkPwnedPassword = false;
+        $this->requiredUnpwnedPassword = false;
     }
 
     /**
      * @param bool|null $flag
      * @return bool
      */
-    public function checkPawnedPassword($flag = null)
+    public function checkPwnedPassword($flag = null)
     {
-        $value = $this->checkPawnedPassword;
+        $value = $this->checkPwnedPassword;
 
         if (null !== $flag) {
-            $this->checkPawnedPassword = (bool)$flag;
+            $this->checkPwnedPassword = (bool)$flag;
         }
 
         return $value;
@@ -162,12 +162,12 @@ class AccountManagement extends \Magento\Customer\Model\AccountManagement
      * @param bool|null $flag
      * @return bool
      */
-    public function requiredUnpawnedPassword($flag = null)
+    public function requiredUnpwnedPassword($flag = null)
     {
-        $value = $this->requiredUnpawnedPassword;
+        $value = $this->requiredUnpwnedPassword;
 
         if (null !== $flag) {
-            $this->requiredUnpawnedPassword = (bool)$flag;
+            $this->requiredUnpwnedPassword = (bool)$flag;
         }
 
         return $value;
@@ -176,9 +176,9 @@ class AccountManagement extends \Magento\Customer\Model\AccountManagement
     /**
      * @return bool
      */
-    public function isPawnedPassword()
+    public function isPwnedPassword()
     {
-        return $this->pawnedPassword;
+        return $this->pwnedPassword;
     }
 
     /**
@@ -188,10 +188,10 @@ class AccountManagement extends \Magento\Customer\Model\AccountManagement
     {
         parent::checkPasswordStrength($password);
 
-        if ($this->checkPawnedPassword() || $this->requiredUnpawnedPassword()) {
-            $this->pawnedPassword = $this->pawnedPasswordService->isPawned($password);
-            if ($this->requiredUnpawnedPassword() && $this->pawnedPassword) {
-                throw new InputException(__('Given password is pawned, please enter different password. Learn more <a href="https://haveibeenpwned.com/Passwords">here</a>.'));
+        if ($this->checkPwnedPassword() || $this->requiredUnpwnedPassword()) {
+            $this->pwnedPassword = $this->pwnedPasswordService->isPwned($password);
+            if ($this->requiredUnpwnedPassword() && $this->pwnedPassword) {
+                throw new InputException(__('Given password is pwned, please enter different password. Learn more <a href="https://haveibeenpwned.com/Passwords">here</a>.'));
             }
         }
     }

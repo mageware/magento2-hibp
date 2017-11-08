@@ -5,11 +5,11 @@
 
 namespace MageWare\Hibp\Model;
 
-interface PawnedPasswordInterface
+interface PwnedPasswordInterface
 {
     /**
      * @param string $password
      * @return bool
      */
-    public function isPawned($password);
+    public function isPwned($password);
 }

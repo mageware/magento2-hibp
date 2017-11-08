@@ -8,15 +8,15 @@
     <preference for="Magento\Customer\Api\AccountManagementInterface"
                 type="MageWare\Hibp\Model\AccountManagement" />
     <type name="Magento\Customer\Controller\Account\LoginPost">
-        <plugin name="pawnedPassword" type="MageWare\Hibp\Controller\Plugin\Customer\Account\LoginPost" sortOrder="90" />
+        <plugin name="pwnedPassword" type="MageWare\Hibp\Controller\Plugin\Customer\Account\LoginPost" sortOrder="90" />
     </type>
     <type name="Magento\Customer\Controller\Account\CreatePost">
-        <plugin name="pawnedPassword" type="MageWare\Hibp\Controller\Plugin\Customer\Account\CreatePost" sortOrder="90" />
+        <plugin name="pwnedPassword" type="MageWare\Hibp\Controller\Plugin\Customer\Account\CreatePost" sortOrder="90" />
     </type>
     <type name="Magento\Customer\Controller\Account\EditPost">
-        <plugin name="pawnedPassword" type="MageWare\Hibp\Controller\Plugin\Customer\Account\EditPost" sortOrder="90" />
+        <plugin name="pwnedPassword" type="MageWare\Hibp\Controller\Plugin\Customer\Account\EditPost" sortOrder="90" />
     </type>
     <type name="Magento\Customer\Controller\Account\ResetPasswordPost">
-        <plugin name="pawnedPassword" type="MageWare\Hibp\Controller\Plugin\Customer\Account\ResetPasswordPost" sortOrder="90" />
+        <plugin name="pwnedPassword" type="MageWare\Hibp\Controller\Plugin\Customer\Account\ResetPasswordPost" sortOrder="90" />
     </type>
 </config>

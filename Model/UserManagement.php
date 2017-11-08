@@ -8,46 +8,46 @@ namespace MageWare\Hibp\Model;
 class UserManagement
 {
     /**
-     * @var PawnedPasswordInterface
+     * @var PwnedPasswordInterface
      */
-    private $pawnedPasswordService;
+    private $pwnedPasswordService;
 
     /**
      * @var bool
      */
-    private $checkPawnedPassword;
+    private $checkPwnedPassword;
 
     /**
      * @var bool
      */
-    private $requiredUnpawnedPassword;
+    private $requiredUnpwnedPassword;
 
     /**
      * @var bool
      */
-    private $pawnedPassword;
+    private $pwnedPassword;
 
     /**
-     * @param PawnedPasswordInterface $pawnedPasswordService
+     * @param PwnedPasswordInterface $pwnedPasswordService
      */
-    public function __construct(PawnedPasswordInterface $pawnedPasswordService)
+    public function __construct(PwnedPasswordInterface $pwnedPasswordService)
     {
-        $this->pawnedPasswordService = $pawnedPasswordService;
-        $this->checkPawnedPassword = false;
-        $this->requiredUnpawnedPassword = false;
-        $this->pawnedPassword = false;
+        $this->pwnedPasswordService = $pwnedPasswordService;
+        $this->checkPwnedPassword = false;
+        $this->requiredUnpwnedPassword = false;
+        $this->pwnedPassword = false;
     }
 
     /**
      * @param bool|null $flag
      * @return bool
      */
-    public function checkPawnedPassword($flag = null)
+    public function checkPwnedPassword($flag = null)
     {
-        $value = $this->checkPawnedPassword;
+        $value = $this->checkPwnedPassword;
 
         if (null !== $flag) {
-            $this->checkPawnedPassword = (bool)$flag;
+            $this->checkPwnedPassword = (bool)$flag;
         }
 
         return $value;
@@ -57,12 +57,12 @@ class UserManagement
      * @param bool|null $flag
      * @return bool
      */
-    public function requiredUnpawnedPassword($flag = null)
+    public function requiredUnpwnedPassword($flag = null)
     {
-        $value = $this->requiredUnpawnedPassword;
+        $value = $this->requiredUnpwnedPassword;
 
         if (null !== $flag) {
-            $this->requiredUnpawnedPassword = (bool)$flag;
+            $this->requiredUnpwnedPassword = (bool)$flag;
         }
 
         return $value;
@@ -72,11 +72,11 @@ class UserManagement
      * @param string|null $password
      * @return bool
      */
-    public function isPawnedPassword($password = null)
+    public function isPwnedPassword($password = null)
     {
         if (null !== $password) {
-            $this->pawnedPassword = $this->pawnedPasswordService->isPawned($password);
+            $this->pwnedPassword = $this->pwnedPasswordService->isPwned($password);
         }
-        return $this->pawnedPassword;
+        return $this->pwnedPassword;
     }
 }
