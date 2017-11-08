@@ -8,12 +8,12 @@
     <default>
         <mageware_hibp>
             <storefront>
-                <check_pawned_password>0</check_pawned_password>
-                <required_unpawned_password>0</required_unpawned_password>
+                <check_pwned_password>0</check_pwned_password>
+                <required_unpwned_password>0</required_unpwned_password>
             </storefront>
             <admin>
-                <check_pawned_password>0</check_pawned_password>
-                <required_unpawned_password>0</required_unpawned_password>
+                <check_pwned_password>0</check_pwned_password>
+                <required_unpwned_password>0</required_unpwned_password>
             </admin>
         </mageware_hibp>
     </default>

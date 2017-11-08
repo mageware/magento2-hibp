@@ -8,18 +8,18 @@
     <preference for="Magento\User\Model\User"
                 type="MageWare\Hibp\Model\User" />
     <type name="Magento\Backend\App\AbstractAction">
-        <plugin name="pawnedPassword" type="MageWare\Hibp\App\Action\Plugin\PawnedPassword" sortOrder="90" />
+        <plugin name="pwnedPassword" type="MageWare\Hibp\App\Action\Plugin\PwnedPassword" sortOrder="90" />
     </type>
     <type name="Magento\User\Controller\Adminhtml\Auth\ResetPasswordPost">
-        <plugin name="pawnedPassword" type="MageWare\Hibp\Controller\Plugin\Adminhtml\Auth\ResetPasswordPost" sortOrder="90" />
+        <plugin name="pwnedPassword" type="MageWare\Hibp\Controller\Plugin\Adminhtml\Auth\ResetPasswordPost" sortOrder="90" />
     </type>
     <type name="Magento\User\Controller\Adminhtml\User\Validate">
-        <plugin name="pawnedPassword" type="MageWare\Hibp\Controller\Plugin\Adminhtml\User\Validate" sortOrder="90" />
+        <plugin name="pwnedPassword" type="MageWare\Hibp\Controller\Plugin\Adminhtml\User\Validate" sortOrder="90" />
     </type>
     <type name="Magento\Backend\Controller\Adminhtml\System\Account\Save">
-        <plugin name="pawnedPassword" type="MageWare\Hibp\Controller\Plugin\Adminhtml\System\Account\Save" sortOrder="90" />
+        <plugin name="pwnedPassword" type="MageWare\Hibp\Controller\Plugin\Adminhtml\System\Account\Save" sortOrder="90" />
     </type>
     <type name="Magento\User\Controller\Adminhtml\User\Save">
-        <plugin name="pawnedPassword" type="MageWare\Hibp\Controller\Plugin\Adminhtml\User\Save" sortOrder="90" />
+        <plugin name="pwnedPassword" type="MageWare\Hibp\Controller\Plugin\Adminhtml\User\Save" sortOrder="90" />
     </type>
 </config>

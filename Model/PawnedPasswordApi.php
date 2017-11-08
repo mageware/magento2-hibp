@@ -5,7 +5,7 @@
 
 namespace MageWare\Hibp\Model;
 
-class PawnedPasswordApi implements PawnedPasswordInterface
+class PwnedPasswordApi implements PwnedPasswordInterface
 {
     const ENDPOINT = 'https://haveibeenpwned.com/api/v2/pwnedpassword';
     const USER_AGENT = 'mageware/magento2-hibp';
@@ -27,7 +27,7 @@ class PawnedPasswordApi implements PawnedPasswordInterface
     /**
      * {@inheritdoc}
      */
-    public function isPawned($password)
+    public function isPwned($password)
     {
         $httpAdapter = $this->curlFactory->create();
         $postbackQuery = http_build_query(['password' => sha1($password)]);

@@ -19,7 +19,7 @@ class ResetPasswordPost
 
     /**
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-     * @param \MageWare\Hibp\Model\PawnedPasswordInterface $pawnedPasswordService
+     * @param \MageWare\Hibp\Model\PwnedPasswordInterface $pwnedPasswordService
      */
     public function __construct(
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
@@ -42,13 +42,13 @@ class ResetPasswordPost
         \Closure $proceed,
         \Magento\Framework\App\RequestInterface $request
     ) {
-        $requiredUnpawnedPassword = $this->scopeConfig->isSetFlag('mageware_hibp/storefront/required_unpawned_password');
+        $requiredUnpwnedPassword = $this->scopeConfig->isSetFlag('mageware_hibp/storefront/required_unpwned_password');
 
-        $currentRequiredUnpawnedPassword = $this->accountManagement->requiredUnpawnedPassword($requiredUnpawnedPassword);
+        $currentRequiredUnpwnedPassword = $this->accountManagement->requiredUnpwnedPassword($requiredUnpwnedPassword);
 
         $result = $proceed($request);
 
-        $this->accountManagement->requiredUnpawnedPassword($currentRequiredUnpawnedPassword);
+        $this->accountManagement->requiredUnpwnedPassword($currentRequiredUnpwnedPassword);
 
         return $result;
     }

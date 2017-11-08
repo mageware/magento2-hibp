@@ -50,16 +50,16 @@ class Save
         \Closure $proceed,
         \Magento\Framework\App\RequestInterface $request
     ) {
-        $checkPawnedPassword = $this->scopeConfig->isSetFlag('mageware_hibp/admin/check_pawned_password');
-        $requiredUnpawnedPassword = $this->scopeConfig->isSetFlag('mageware_hibp/admin/required_unpawned_password');
+        $checkPwnedPassword = $this->scopeConfig->isSetFlag('mageware_hibp/admin/check_pwned_password');
+        $requiredUnpwnedPassword = $this->scopeConfig->isSetFlag('mageware_hibp/admin/required_unpwned_password');
 
         $result = $proceed($request);
 
         $data = $request->getPostValue();
 
-        if (!$requiredUnpawnedPassword && $checkPawnedPassword && $this->userManagement->isPawnedPassword($data['password'])) {
+        if (!$requiredUnpwnedPassword && $checkPwnedPassword && $this->userManagement->isPwnedPassword($data['password'])) {
             $this->messageManager->addWarning(
-                __('Given password is pawned. Learn more <a href="https://haveibeenpwned.com/Passwords">here</a>.')
+                __('Given password is pwned. Learn more <a href="https://haveibeenpwned.com/Passwords">here</a>.')
             );
         }
 

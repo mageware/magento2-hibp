@@ -23,26 +23,26 @@ class LoginPost
     private $session;
 
     /**
-     * @var \MageWare\Hibp\Model\PawnedPasswordInterface
+     * @var \MageWare\Hibp\Model\PwnedPasswordInterface
      */
-    private $pawnedPasswordService;
+    private $pwnedPasswordService;
 
     /**
      * @param \Magento\Framework\Message\ManagerInterface $messageManager
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      * @param \Magento\Customer\Model\Session $session
-     * @param \MageWare\Hibp\Model\PawnedPasswordInterface $pawnedPasswordService
+     * @param \MageWare\Hibp\Model\PwnedPasswordInterface $pwnedPasswordService
      */
     public function __construct(
         \Magento\Framework\Message\ManagerInterface $messageManager,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Customer\Model\Session $session,
-        \MageWare\Hibp\Model\PawnedPasswordInterface $pawnedPasswordService
+        \MageWare\Hibp\Model\PwnedPasswordInterface $pwnedPasswordService
     ) {
         $this->messageManager = $messageManager;
         $this->scopeConfig = $scopeConfig;
         $this->session = $session;
-        $this->pawnedPasswordService = $pawnedPasswordService;
+        $this->pwnedPasswordService = $pwnedPasswordService;
     }
 
     /**
@@ -58,20 +58,20 @@ class LoginPost
         \Closure $proceed,
         \Magento\Framework\App\RequestInterface $request
     ) {
-        $checkPawnedPassword = false;
+        $checkPwnedPassword = false;
         $login = $request->getPost('login');
 
         if (!$this->session->isLoggedIn()) {
-            $checkPawnedPassword = $this->scopeConfig->isSetFlag('mageware_hibp/storefront/check_pawned_password');
+            $checkPwnedPassword = $this->scopeConfig->isSetFlag('mageware_hibp/storefront/check_pwned_password');
         }
 
         $result = $proceed($request);
 
         if ($this->session->isLoggedIn()) {
-            if ($checkPawnedPassword) {
-                if ($this->pawnedPasswordService->isPawned($login['password'])) {
+            if ($checkPwnedPassword) {
+                if ($this->pwnedPasswordService->isPwned($login['password'])) {
                     $this->messageManager->addWarning(
-                        __('Your password is pawned. Learn more <a href="https://haveibeenpwned.com/Passwords">here</a>.')
+                        __('Your password is pwned. Learn more <a href="https://haveibeenpwned.com/Passwords">here</a>.')
                     );
                 }
             }

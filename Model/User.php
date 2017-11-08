@@ -23,7 +23,7 @@ class User extends \Magento\User\Model\User
      * @param \Magento\Framework\Encryption\EncryptorInterface $encryptor
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param \Magento\User\Model\UserValidationRules $validationRules
-     * @param PawnedPasswordInterface $pawnedPasswordService
+     * @param PwnedPasswordInterface $pwnedPasswordService
      * @param \Magento\Framework\Model\ResourceModel\AbstractResource $resource
      * @param \Magento\Framework\Data\Collection\AbstractDb $resourceCollection
      * @param array $data
@@ -75,9 +75,9 @@ class User extends \Magento\User\Model\User
         $result = parent::validatePasswordChange();
 
         if (true === $result) {
-            if ($this->userManagement->checkPawnedPassword() || $this->userManagement->requiredUnpawnedPassword()) {
-                if ($this->userManagement->isPawnedPassword($this->getPassword()) && $this->userManagement->requiredUnpawnedPassword()) {
-                    return [__('Given password is pawned, please enter different password. Learn more <a href="https://haveibeenpwned.com/Passwords">here</a>.')];
+            if ($this->userManagement->checkPwnedPassword() || $this->userManagement->requiredUnpwnedPassword()) {
+                if ($this->userManagement->isPwnedPassword($this->getPassword()) && $this->userManagement->requiredUnpwnedPassword()) {
+                    return [__('Given password is pwned, please enter different password. Learn more <a href="https://haveibeenpwned.com/Passwords">here</a>.')];
                 }
             }
         }

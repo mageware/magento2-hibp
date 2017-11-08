@@ -5,7 +5,7 @@
 
 namespace MageWare\Hibp\App\Action\Plugin;
 
-class PawnedPassword
+class PwnedPassword
 {
     /**
      * @var \Magento\Backend\Model\Auth
@@ -18,9 +18,9 @@ class PawnedPassword
     private $messageManager;
 
     /**
-     * @var \MageWare\Hibp\Model\PawnedPasswordInterface
+     * @var \MageWare\Hibp\Model\PwnedPasswordInterface
      */
-    private $pawnedPasswordService;
+    private $pwnedPasswordService;
 
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
@@ -32,18 +32,18 @@ class PawnedPassword
      *
      * @param \Magento\Backend\Model\Auth $auth
      * @param \Magento\Framework\Message\ManagerInterface $messageManager
-     * @param \MageWare\Hibp\Model\PawnedPasswordInterface $pawnedPasswordService
+     * @param \MageWare\Hibp\Model\PwnedPasswordInterface $pwnedPasswordService
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      */
     public function __construct(
         \Magento\Backend\Model\Auth $auth,
         \Magento\Framework\Message\ManagerInterface $messageManager,
-        \MageWare\Hibp\Model\PawnedPasswordInterface $pawnedPasswordService,
+        \MageWare\Hibp\Model\PwnedPasswordInterface $pwnedPasswordService,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
     ) {
         $this->auth = $auth;
         $this->messageManager = $messageManager;
-        $this->pawnedPasswordService = $pawnedPasswordService;
+        $this->pwnedPasswordService = $pwnedPasswordService;
         $this->scopeConfig = $scopeConfig;
     }
 
@@ -60,20 +60,20 @@ class PawnedPassword
         \Closure $proceed,
         \Magento\Framework\App\RequestInterface $request
     ) {
-        $checkPawnedPassword = false;
+        $checkPwnedPassword = false;
         $login = $request->getPost('login');
         if (!$this->auth->isLoggedIn()) {
             if (!empty($login['password'])) {
-                $checkPawnedPassword = $this->scopeConfig->isSetFlag('mageware_hibp/admin/check_pawned_password');
+                $checkPwnedPassword = $this->scopeConfig->isSetFlag('mageware_hibp/admin/check_pwned_password');
             }
         }
         $result = $proceed($request);
-        if ($checkPawnedPassword) {
+        if ($checkPwnedPassword) {
             if ($this->auth->isLoggedIn()) {
                 if (!empty($login['password'])) {
-                    if ($this->pawnedPasswordService->isPawned($login['password'])) {
+                    if ($this->pwnedPasswordService->isPwned($login['password'])) {
                         $this->messageManager->addWarning(
-                            __('Your password is pawned. Learn more <a href="https://haveibeenpwned.com/Passwords">here</a>.')
+                            __('Your password is pwned. Learn more <a href="https://haveibeenpwned.com/Passwords">here</a>.')
                         );
                     }
                 }

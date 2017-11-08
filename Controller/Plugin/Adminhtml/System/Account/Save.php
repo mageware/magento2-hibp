@@ -50,20 +50,20 @@ class Save
         \Closure $proceed,
         \Magento\Framework\App\RequestInterface $request
     ) {
-        $checkPawnedPassword = $this->scopeConfig->isSetFlag('mageware_hibp/admin/check_pawned_password');
-        $requiredUnpawnedPassword = $this->scopeConfig->isSetFlag('mageware_hibp/admin/required_unpawned_password');
+        $checkPwnedPassword = $this->scopeConfig->isSetFlag('mageware_hibp/admin/check_pwned_password');
+        $requiredUnpwnedPassword = $this->scopeConfig->isSetFlag('mageware_hibp/admin/required_unpwned_password');
 
-        $currentCheckPawnedPassword = $this->userManagement->checkPawnedPassword($checkPawnedPassword);
-        $currentRequiredUnpawnedPassword = $this->userManagement->requiredUnpawnedPassword($requiredUnpawnedPassword);
+        $currentCheckPwnedPassword = $this->userManagement->checkPwnedPassword($checkPwnedPassword);
+        $currentRequiredUnpwnedPassword = $this->userManagement->requiredUnpwnedPassword($requiredUnpwnedPassword);
 
         $result = $proceed($request);
 
-        $this->userManagement->requiredUnpawnedPassword($currentRequiredUnpawnedPassword);
-        $this->userManagement->checkPawnedPassword($currentCheckPawnedPassword);
+        $this->userManagement->requiredUnpwnedPassword($currentRequiredUnpwnedPassword);
+        $this->userManagement->checkPwnedPassword($currentCheckPwnedPassword);
 
-        if (!$requiredUnpawnedPassword && $this->userManagement->isPawnedPassword()) {
+        if (!$requiredUnpwnedPassword && $this->userManagement->isPwnedPassword()) {
             $this->messageManager->addWarning(
-                __('Your password is pawned. Learn more <a href="https://haveibeenpwned.com/Passwords">here</a>.')
+                __('Your password is pwned. Learn more <a href="https://haveibeenpwned.com/Passwords">here</a>.')
             );
         }
 
